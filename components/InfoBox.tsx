@@ -5,7 +5,6 @@ import Image from "next/image";
 import logo from "@/assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBell,
   faCartShopping,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";

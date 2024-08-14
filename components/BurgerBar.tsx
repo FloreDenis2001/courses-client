@@ -5,7 +5,6 @@ import { faAddressBook, faBook, faGraduationCap, faHouse, faX } from "@fortaweso
 import LogoBox from "./LogoBox";
 import BurgerLink from "./BurgerLink";
 import Button from "./Button";
-import { link } from "fs";
 
 interface BurgerBarProps {
   isOpen: boolean;
