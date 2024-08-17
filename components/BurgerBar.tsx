@@ -12,7 +12,7 @@ interface BurgerBarProps {
 }
 
 const links = [
-  { icon: faHouse, text: "Acasa" ,url: "/home" },
+  { icon: faHouse, text: "Acasa" ,url: "/" },
   { icon: faBook, text: "Instructor" ,url: "/instructor"},
   { icon: faGraduationCap, text: "Cursuri" ,url: "/courses"},
   { icon: faAddressBook, text: "Contact" ,url: "/contact"},

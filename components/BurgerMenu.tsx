@@ -14,7 +14,7 @@ const BurgerMenu = () => {
   }
 
   return (
-    <section className="flex sm:hidden  p-2 rounded-md cursor-pointer">
+    <section className="grid place-content-center md:hidden  p-2  cursor-pointer  w-1/4  h-full">
       <motion.div
         className="cursor-pointer"
         onClick={handleToggleBurgerBar}
