@@ -71,7 +71,9 @@ const BurgerBar: React.FC<BurgerBarProps> = ({ isOpen, onClose, isAuth }) => (
     </motion.ul>
 
     <section className="flex flex-col items-center gap-4 mt-6">
-      <ButtonFull text={isAuth ? "Log out" : "Sign up"} />
+      <div className="flex flex-col gap-2 mt-4 md:mt-6">
+        <ButtonFull text={isAuth ? "Log out" : "Sign up"} />
+      </div>
       <p className="text-gray-400 text-sm mt-4">
         © 2021 Global Development Future
       </p>

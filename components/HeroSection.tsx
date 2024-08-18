@@ -45,7 +45,7 @@ const HeroSection = () => {
           >
             <Image
               src={trainer}
-              className="rounded-2xl w-1/2 md:w-48 md:h-64 max-w-[200px]"
+              className="rounded-2xl  md:w-48 md:h-64 max-w-[250px]"
               alt="Ana Buda"
             />
             <div className="flex flex-col justify-between h-full">
