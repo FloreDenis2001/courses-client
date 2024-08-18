@@ -16,22 +16,25 @@ interface CourseCardProps {
 const CourseCard: React.FC<CourseCardProps> = ({ course, trainer }) => {
   return (
     <motion.div
-      className="bg-secondary p-6 rounded-lg shadow-lg text-center transform transition duration-500 max-w-[300px] flex flex-col justify-between"
-      initial={{ opacity: 0, y: 50 }}
+      className="relative bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-between h-[400px] max-w-[300px] mx-auto"
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.5 }}
+      whileHover={{ scale: 1.03, boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)" }}
+      transition={{ duration: 0.3 }}
     >
-      <div>
+      <div className="relative mb-4">
         <Image
           src={trainer}
           alt={course.title}
-          className="w-full h-64 object-cover rounded-lg mb-6"
+          className="w-full h-48 object-cover rounded-lg"
+          style={{ objectFit: "cover" }}
         />
-        <h3 className="text-2xl font-bold mb-4">{course.title}</h3>
-        <p className="text-xl text-primary mb-4">{course.pret} RON</p>
       </div>
-      <div className="flex justify-center space-x-4">
+      <div className="relative mb-4">
+        <h3 className="text-2xl font-bold mb-2">{course.title}</h3>
+        <p className="text-xl text-gray-700">{course.pret} RON</p>
+      </div>
+      <div className="relative flex justify-center space-x-4">
         <ButtonFull text="Cumpara" />
         <ButtonBorder text="Detalii" />
       </div>

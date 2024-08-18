@@ -7,7 +7,8 @@ import { useInView } from "react-intersection-observer";
 const CoursesStats = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+
+    threshold: 0.3,
   });
 
   const data = [
@@ -29,12 +30,26 @@ const CoursesStats = () => {
         animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-4xl font-extrabold text-center mb-10 text-white">
+        <motion.h2
+          className="text-4xl font-extrabold mb-6 text-white"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -50 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{ textShadow: "0 2px 4px rgba(0,0,0,0.2)" }}
+        >
           Cifrele care vorbesc despre succesul nostru
-        </h2>
+        </motion.h2>
+
         <div className="flex flex-col gap-4 items-center md:flex-row flex-wrap justify-center">
           {data.map((item, index) => (
-            <CoursesStatsBox key={index} value={item.value} text={item.text} />
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <CoursesStatsBox value={item.value} text={item.text} />
+            </motion.div>
           ))}
         </div>
         <div className="absolute inset-0 pointer-events-none">
