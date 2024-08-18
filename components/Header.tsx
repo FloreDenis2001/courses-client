@@ -25,7 +25,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 mt-2">
+    <header className="fixed top-0 left-0 right-0 z-50 mx-4 mt-2">
       <div
         className={`flex flex-row items-center rounded-xl h-20 w-full max-w-screen-lg mx-auto px-4 py-2 transition-all duration-300 ${
           scrolled ? "bg-secondary border-2 border-primary shadow-md" : "bg-secondary"
