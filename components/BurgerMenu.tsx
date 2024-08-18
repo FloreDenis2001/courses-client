@@ -29,7 +29,7 @@ const BurgerMenu = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <BurgerBar isOpen={isOpen} onClose={handleToggleBurgerBar} />
+          <BurgerBar isOpen={isOpen} onClose={handleToggleBurgerBar} isAuth={true} />
         )}
       </AnimatePresence>
     </section>
