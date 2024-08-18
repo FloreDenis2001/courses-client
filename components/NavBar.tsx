@@ -25,7 +25,7 @@ const NavBar = () => {
 
   return (
     <motion.section
-      className="hidden md:flex  w-1/2 min-h-full flex-row items-center justify-center"
+      className="hidden md:flex  w-1/2 min-h-full flex-row items-center justify-center "
       initial="hidden"
       animate="visible"
       variants={containerVariants}
