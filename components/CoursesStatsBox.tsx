@@ -14,7 +14,7 @@ const CoursesStatsBox: React.FC<CoursesStatsBoxProps> = ({ value, text }) => {
       initial={{ scale: 0.9, opacity: 0.6 }}
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.05, backgroundColor: "#DE968D" }}
-      whileTap={{ scale: 0.95 }} 
+      whileTap={{ scale: 0.95 , backgroundColor: "#DE968D"}} 
     >
       <span className="block text-3xl font-bold text-white mb-2">{value}</span>
       <p className="text-lg text-gray-300">{text}</p>
