@@ -6,8 +6,8 @@ import InfoBox from "./InfoBox";
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-center py-4 px-4 m-2">
-      <div className="flex flex-row items-center rounded-xl h-20 w-full max-w-screen-lg mx-auto bg-secondary">
+    <header className="flex items-center justify-center py-4 px-4 m-2 ">
+      <div className="flex flex-row items-center rounded-xl h-20 w-full max-w-screen-lg   mx-auto bg-secondary">
         <BurgerMenu />
         <LogoBox />
         <NavBar />
