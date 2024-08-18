@@ -32,7 +32,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, trainer }) => {
       </div>
       <div className="relative mb-4">
         <h3 className="text-2xl font-bold mb-2">{course.title}</h3>
-        <p className="text-xl text-gray-700">{course.pret} RON</p>
+        <p className="text-xl text-primary">{course.pret} RON</p>
       </div>
       <div className="relative flex justify-center space-x-4">
         <ButtonFull text="Cumpara" />
