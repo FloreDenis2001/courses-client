@@ -16,7 +16,7 @@ const HeroSection = () => {
   return (
     <section
       ref={ref}
-      className="flex items-center justify-center md:py-12 mt-20"
+      className="flex items-center justify-center md:py-12 lg:mt-20 mx-4"
     >
       <motion.div
         className="font-jakarta grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full max-w-screen-lg mx-auto px-4 md:px-6 bg-secondary rounded-xl p-8"
