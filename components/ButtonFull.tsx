@@ -22,7 +22,7 @@ const ButtonFull: React.FC<ButtonProps> = ({ text }) => {
         type: "spring", 
         stiffness: 300, 
       }}
-      className="px-4 py-2 bg-primary text-white rounded-3xl  sm:w-40 md:w-48 lg:w-56 xl:w-64 flex justify-center relative overflow-hidden cursor-pointer"
+      className="px-4 py-2 bg-primary text-white rounded-3xl w-full sm:w-40 md:w-48 lg:w-56 xl:w-64 flex justify-center relative overflow-hidden cursor-pointer"
     >
       <span className="relative z-10">{text}</span>
       <motion.span

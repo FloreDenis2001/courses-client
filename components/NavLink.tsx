@@ -14,26 +14,31 @@ interface NavLinkProps {
 
 const NavLink: React.FC<NavLinkProps> = ({ link }) => {
   const pathname = usePathname();
-  const isActive = pathname === link.url; 
+  const isActive = pathname === link.url;
+
   return (
     <motion.li
-      initial={{ opacity: 0, x: -100 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.05, x: 5 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      whileHover={{ scale: 1.1, y: -2 }}
       whileTap={{ scale: 0.95 }}
-      className={`transition-colors duration-300 ${
-        isActive ? "text-primary" : "text-gray-600"
-      }`}
+      className={`relative flex items-center`}
     >
       <Link
         href={link.url}
-        className={`flex flex-row items-center gap-1 ${
-          isActive ? "font-bold" : "font-normal"
+        className={`flex flex-row items-center gap-1 transition-transform duration-300 ease-in-out ${
+          isActive ? "text-primary font-semibold" : "text-gray-600"
         }`}
       >
-        <p>{link.text}</p>
+        <p className={`relative z-10`}>{link.text}</p>
       </Link>
+      <motion.div
+        className={`absolute left-0 -bottom-1 w-full h-1 bg-primary rounded-full`}
+        initial={{ width: 0 }}
+        animate={{ width: isActive ? "100%" : 0 }}
+        transition={{ duration: 0.3 }}
+      />
     </motion.li>
   );
 };

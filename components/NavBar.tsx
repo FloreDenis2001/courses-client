@@ -12,25 +12,29 @@ const NavBar = () => {
   ];
 
   const containerVariants = {
-    hidden: {}, 
+    hidden: { opacity: 0, y: -50 },
     visible: {
+      opacity: 1,
+      y: 0,
       transition: {
         ease: "easeOut",
-        staggerChildren: 0.3, 
-        duration: 0.5, 
-
+        staggerChildren: 0.3,
+        duration: 0.5,
       },
     },
   };
 
   return (
     <motion.section
-      className="hidden md:flex  w-1/2 min-h-full flex-row items-center justify-center "
+      className="hidden md:flex w-1/2 min-h-full flex-row items-center justify-center"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
-      <motion.ul className="flex flex-row gap-5 items-center" variants={containerVariants}>
+      <motion.ul
+        className="flex flex-row gap-6 items-center"
+        variants={containerVariants}
+      >
         {links.map((link, index) => (
           <NavLink key={index} link={link} />
         ))}

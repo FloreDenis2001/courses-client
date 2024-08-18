@@ -12,7 +12,7 @@ interface BurgerLinkProps {
 const BurgerLink: React.FC<BurgerLinkProps> = ({ icon, children, url }) => (
   <motion.div
     className="flex gap-2 p-2"
-    whileHover={{ scale: 1.05 }}
+    whileHover={{ scale: 1.05  }}
     whileTap={{ scale: 0.95 }}
     transition={{ duration: 0.3 }}
   >

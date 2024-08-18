@@ -10,7 +10,7 @@ const HeroSection = () => {
   return (
     <section className="flex items-center justify-center md:py-12 m-4">
       <motion.div
-        className="font-jakarta grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 md:max-w-[850px] lg:max-w-[1200px] w-full px-4 md:px-6 bg-secondary rounded-xl p-8 max-w-[650px]"
+        className="font-jakarta grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8   w-full max-w-screen-lg mx-auto  px-4 md:px-6 bg-secondary rounded-xl p-8"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -38,7 +38,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.div
-            className="flex flex-row md:flex-col md:text-center lg:flex-row lg:text-start items-start gap-4 md:gap-6"
+            className="flex flex-col items-center md:flex-col md:text-center lg:flex-row lg:text-start md:items-start gap-4 md:gap-6"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -59,8 +59,8 @@ const HeroSection = () => {
               </div>
 
               <div className="flex flex-col gap-2 mt-4 md:mt-6">
-                <ButtonFull text="Vezi cursurile" />
-                <ButtonBorder text="Invata mai multe" />
+                <ButtonFull text="Cursuri" />
+                <ButtonBorder text="Descopera" />
               </div>
             </div>
           </motion.div>
