@@ -27,7 +27,7 @@ const SubjectSection = () => {
 
   return (
     <section
-      className="relative flex items-center justify-center md:py-16 px-6"
+      className="relative flex items-center justify-center md:py-4 px-6"
       ref={ref}
     >
       <motion.div
