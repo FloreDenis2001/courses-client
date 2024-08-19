@@ -46,7 +46,7 @@ const CoursesSection = () => {
       animate={{ opacity: inView ? 1 : 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="text-start font-jakarta bg-secondary p-10 max-w-screen-lg w-full relative z-10 rounded-xl mx-auto">
+      <div className="text-start font-jakarta bg-secondary p-10 max-w-screen-lg w-full relative z-10 rounded-xl mx-auto shadow-md">
         <motion.div
           className="absolute inset-0 z-0 rounded-xl"
           initial={{ filter: "blur(40px)", scale: 1.1 }}

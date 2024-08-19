@@ -20,7 +20,7 @@ const HeroSection = () => {
       className="flex items-center justify-center md:py-4 mt-20 mx-4"
     >
       <motion.div
-        className="mt-8 md:mt-6 relative font-jakarta grid min-h-[80vh] grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full max-w-screen-lg mx-auto px-4 md:px-6 bg-secondary rounded-xl p-8"
+        className="mt-8 md:mt-6 relative font-jakarta grid min-h-[80vh] grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full max-w-screen-lg mx-auto px-4 md:px-6 bg-secondary rounded-xl p-8 shadow-md"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
         transition={{ duration: 1, ease: "easeOut" }}

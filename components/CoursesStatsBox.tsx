@@ -17,7 +17,7 @@ const decorationStyles = {
 const CoursesStatsBox: React.FC<CoursesStatsBoxProps> = ({ value, text, decoration }) => {
   return (
     <motion.div
-      className="bg-secondary rounded-xl text-center  hover:text-white transition-transform duration-300 cursor-pointer flex flex-col items-center justify-center w-36 h-36 md:w-48 md:h-48 relative group"
+      className="bg-secondary rounded-xl text-center shadow-md  hover:text-white transition-transform duration-300 cursor-pointer flex flex-col items-center justify-center w-36 h-36 md:w-48 md:h-48 relative group"
       initial={{ scale: 0.9, opacity: 0.6 }}
       animate={{ scale: 0.9, opacity: 1 }}
       whileHover={{ scale: 0.95, backgroundColor: "#DE968D" }}
