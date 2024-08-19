@@ -5,6 +5,7 @@ import meetImage from "@/assets/meet.jpg";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import CoursesCard from "./CoursesCard";
+import background from "@/assets/backgroundCourses.png";
 
 const CoursesSection = () => {
   const { ref, inView } = useInView({
@@ -25,7 +26,6 @@ const CoursesSection = () => {
     },
   ];
 
-  // Define variants for card animation
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (index: number) => ({
@@ -33,7 +33,7 @@ const CoursesSection = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        delay: index * 0.3, // Staggering effect based on the index
+        delay: index * 0.3, 
       },
     }),
   };
@@ -48,20 +48,17 @@ const CoursesSection = () => {
     >
       <div className="text-start font-jakarta bg-secondary p-10 max-w-screen-lg w-full relative z-10 rounded-xl mx-auto">
         <motion.div
-          className="absolute bottom-[-5%] left-[-5%] transform bg-secondary  border-8 border-primary rounded-full w-24 h-24  lg:w-32 lg:h-32"
-          style={{
-            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-          }}
+          className="absolute inset-0 z-0 rounded-xl"
+          initial={{ filter: "blur(40px)", scale: 1.1 }}
           animate={{
-            scale: [1, 1.1, 1.2, 1.3, 1],
-            y: ["0%", "10%", "15%", "20%", "0%"],
-            rotate: [0, 360],
+            filter: inView ? "blur(0px)" : "blur(10px)",
+            scale: inView ? 1 : 1.1,
           }}
-          transition={{
-            duration: 8,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatType: "loop",
+          transition={{ duration: 1, ease: "easeOut" }}
+          style={{
+            backgroundImage: `url(${background.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         />
         <motion.h2
@@ -118,7 +115,7 @@ const CoursesSection = () => {
               variants={cardVariants}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
-              custom={index} // Pass the index to use it in the variant
+              custom={index} 
               className="transform transition-transform duration-500 hover:scale-105 hover:rotate-3d"
               style={{ transformStyle: "preserve-3d" }}
             >
