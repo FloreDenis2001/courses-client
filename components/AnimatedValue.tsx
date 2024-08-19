@@ -9,7 +9,7 @@ const AnimatedValue: React.FC<{ value: number }> = ({ value }) => {
     const end = value;
     if (start === end) return;
 
-    const duration = 2000;
+    const duration = 4000;
     const incrementTime = duration / end;
     const timer = setInterval(() => {
       start += 1;
