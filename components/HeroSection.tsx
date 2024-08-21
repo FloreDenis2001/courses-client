@@ -24,18 +24,12 @@ const HeroSection = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
         transition={{ duration: 1, ease: "easeOut" }}
+        style={{
+          backgroundImage: `url(${background.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
-        <motion.div
-          className="absolute inset-0 z-0 rounded-xl"
-          initial={{ filter: "blur(40px)", scale: 1.1 }}
-          animate={{ filter: inView ? "blur(0px)" : "blur(10px)", scale: inView ? 1 : 1.1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          style={{
-            backgroundImage: `url(${background.src})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
 
         <motion.div
           className="relative z-10 flex flex-col items-center justify-center px-4 md:px-0 "

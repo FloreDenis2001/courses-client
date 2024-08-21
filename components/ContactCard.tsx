@@ -17,8 +17,8 @@ const ContactCard: React.FC<ContactCardProps> = ({ title, content, icon }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       whileHover={{ scale: 1.05, backgroundColor: "#DE968D" }}
-      whileTap={{ scale: 0.95, backgroundColor: "#DE968D" }}
-      style={{ width: '300px', height: '400px' }} // Fixed dimensions
+      whileTap={{ scale: 0.95, backgroundColor: "#DE968D" }} // Ensure this matches your hover color
+      style={{ width: '300px', height: '400px' }}
     >
       <div className="bg-primary p-4 rounded-xl mb-4 w-24 h-24 flex items-center justify-center group-hover:bg-white group-hover:rounded-full transition-colors duration-300">
         <FontAwesomeIcon
