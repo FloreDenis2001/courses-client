@@ -4,8 +4,8 @@ import freeImage from "@/assets/free.jpg";
 import meetImage from "@/assets/meet.jpg";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import CoursesCard from "./CoursesCard";
 import background from "@/assets/backgroundCourses.png";
+import CardCoursesSection from "./CardCoursesSection";
 
 const CoursesSection = () => {
   const { ref, inView } = useInView({
@@ -119,7 +119,7 @@ const CoursesSection = () => {
               className="transform transition-transform duration-500 hover:scale-105 hover:rotate-3d"
               style={{ transformStyle: "preserve-3d" }}
             >
-              <CoursesCard course={course} />
+              <CardCoursesSection course={course} />
             </motion.div>
           ))}
         </motion.div>

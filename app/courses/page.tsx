@@ -5,7 +5,6 @@ import background from "@/assets/backgroundCourses.png";
 import { useInView } from "react-intersection-observer";
 import freeImage from "@/assets/free.jpg";
 import meetImage from "@/assets/meet.jpg";
-import CoursesCard from "@/components/CoursesCard";
 import CardCoursesSection from "@/components/CardCoursesSection";
 const CoursesPage = () => {
   const { ref, inView } = useInView({
