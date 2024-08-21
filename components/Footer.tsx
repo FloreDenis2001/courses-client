@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import background from "@/assets/footerbg.png";
 
 const footerVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -20,7 +21,7 @@ const socialIconTransition = () => ({
 export const Footer = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.2, 
+    threshold: 0.2,
   });
 
   return (
@@ -38,7 +39,14 @@ export const Footer = () => {
         animate={inView ? "visible" : "hidden"}
         variants={footerVariants}
         transition={{ duration: 0.6 }}
+        style={{
+          backgroundImage: `url(${background.src})`,
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
       >
+      
         <div className="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
           <motion.div
             className="sm:col-span-2"

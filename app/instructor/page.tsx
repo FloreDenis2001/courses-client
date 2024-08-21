@@ -1,9 +1,18 @@
-import React from 'react'
+import AbonareSection from "@/components/AbonareSection";
+import AboutSection from "@/components/AboutSection";
+import BelivesSection from "@/components/BelivesSection";
+import StorySection from "@/components/StorySection";
+import React from "react";
 
 const page = () => {
   return (
-    <div>page</div>
-  )
-}
+    <>
+      <AboutSection />
+      <StorySection />
+      <BelivesSection />
+      <AbonareSection />
+    </>
+  );
+};
 
-export default page
+export default page;

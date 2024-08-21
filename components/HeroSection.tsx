@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import ButtonFull from "./ButtonFull";
 import trainer from "@/assets/trainer.jpg";
-import background from "@/assets/background.jpg"; // Import the background image
+import background from "@/assets/background.jpg";
 import Image from "next/image";
 import ButtonBorder from "./ButtonBorder";
 import { useInView } from "react-intersection-observer";
