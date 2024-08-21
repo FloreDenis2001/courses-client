@@ -5,11 +5,12 @@ import ButtonFull from "@/components/ButtonFull";
 import trainer from "@/assets/loginbackground.jpg";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
+import Link from "next/link";
 
 const LoginPage = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.3,
+    threshold: 0.1,
   });
 
   const [email, setEmail] = useState("");
@@ -106,7 +107,7 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
 
-              <ButtonFull  text="Logare" />
+              <ButtonFull text="Logare" />
 
               <p className="mt-6 text-xs text-gray-600 text-center">
                 Sunt de acord cu
@@ -137,10 +138,7 @@ const LoginPage = () => {
               </div>
 
               <div className="mt-2 text-sm text-gray-600 text-center">
-                Nu aveți un cont?{" "}
-                <a href="#create-account" className="text-primary hover:underline">
-                  Creați unul acum
-                </a>
+                Nu aveți un cont? <Link href="/register" className="text-primary hover:underline ">Creați unul acum</Link>
               </div>
             </motion.form>
           </div>

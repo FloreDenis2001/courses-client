@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ButtonFull from "@/components/ButtonFull";
+import Link from "next/link";
 
 const RegisterPage = () => {
   const [firstName, setFirstName] = useState("");
@@ -159,9 +160,9 @@ const RegisterPage = () => {
 
             <div className="mt-4 text-sm text-gray-600 text-center">
               Ai deja un cont?{" "}
-              <a href="#login" className="text-primary hover:underline">
+              <Link href="/login" className="text-primary hover:underline">
                 Autentificare
-              </a>
+              </Link>
             </div>
           </motion.form>
         </div>
