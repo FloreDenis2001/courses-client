@@ -1,9 +1,15 @@
-import React from 'react'
+"use client";
+import React from "react";
+import ContactForm from "@/components/ContactForm";
+import ContactInfo from "@/components/ContactInfo";
 
-const page = () => {
+const ContactSection: React.FC = () => {
   return (
-    <div>page</div>
-  )
-}
+    <>
+      <ContactForm />
+      <ContactInfo />
+    </>
+  );
+};
 
-export default page
+export default ContactSection;
