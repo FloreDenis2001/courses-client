@@ -53,8 +53,7 @@ const AbonareSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             style={{ textShadow: "0 2px 4px rgba(0,0,0,0.2)" }}
           >
-            Cum sa-ti transformi visurile in realitate si sa-ti atingi
-            potentialul maxim in domeniul extensiilor de gene!
+           Transformă visurile în realitate și atinge-ți potențialul în extensiile de gene!
           </motion.h1>
 
           <motion.p
