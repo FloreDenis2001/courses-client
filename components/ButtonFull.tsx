@@ -22,7 +22,7 @@ const ButtonFull: React.FC<ButtonProps> = ({ text }) => {
         type: "spring", 
         stiffness: 300, 
       }}
-      className="px-3 py-2 bg-primary text-white rounded-full w-full sm:w-32 md:w-36 flex items-center justify-center text-sm sm:text-base"
+      className="px-3 py-2 mt-2 bg-primary text-white rounded-full w-full sm:w-32 md:w-36 flex items-center justify-center text-sm sm:text-base"
     >
       <span>{text}</span>
     </motion.button>
