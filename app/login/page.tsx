@@ -33,12 +33,12 @@ const LoginPage = () => {
       transition={{ duration: 0.8 }}
     >
       <motion.div
-        className="text-start font-jakarta bg-secondary p-10 max-w-screen-lg max-h-[80vh] w-full relative z-10 rounded-xl mx-auto shadow-md flex flex-row mt-8 md:mt-6"
+        className="text-start font-jakarta bg-secondary p-10 max-w-screen-lg max-h-[80vh] w-full relative z-10 rounded-xl mx-auto shadow-md flex flex-col lg:flex-row mt-8 md:mt-6 mb-4 "
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="mt-12 flex flex-col items-center w-1/2">
+        <div className="mt-12 flex flex-col items-center lg:w-1/2">
           <motion.h1
             className="text-2xl xl:text-3xl font-extrabold"
             initial={{ y: -20, opacity: 0 }}
@@ -145,7 +145,7 @@ const LoginPage = () => {
         </div>
 
         <motion.div
-          className="p-8 w-1/2"
+          className="hidden lg:block p-8 w-1/2"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}

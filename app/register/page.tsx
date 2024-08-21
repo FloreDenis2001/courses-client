@@ -28,7 +28,7 @@ const RegisterPage = () => {
       transition={{ duration: 0.8 }}
     >
       <motion.div
-        className="text-start font-jakarta bg-secondary p-10 max-w-screen-lg w-full relative z-10 rounded-xl mx-auto shadow-md flex flex-col items-center mt-8 md:mt-6"
+        className="mb-4 text-start font-jakarta bg-secondary p-10 max-w-screen-lg w-full relative z-10 rounded-xl mx-auto shadow-md flex flex-col items-center mt-8 md:mt-6"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -45,7 +45,7 @@ const RegisterPage = () => {
         <div className="w-full flex-1 mt-8">
         <div className="flex flex-col items-center">
               <button
-                className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 border border-primary text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow-lg"
+                className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 border border-primary text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow-lg  "
                 onClick={() =>
                   window.open("https://accounts.google.com/signin", "_blank")
                 }
