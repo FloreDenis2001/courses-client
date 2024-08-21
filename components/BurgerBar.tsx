@@ -63,7 +63,7 @@ const BurgerBar: React.FC<BurgerBarProps> = ({ isOpen, onClose, isAuth }) => (
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.4, delay: index * 0.2 }}
         >
-          <BurgerLink icon={link.icon} url={link.url}>
+          <BurgerLink icon={link.icon} url={link.url} onClick={onClose}>
             {link.text}
           </BurgerLink>
         </motion.li>

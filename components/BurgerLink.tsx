@@ -7,17 +7,24 @@ interface BurgerLinkProps {
   icon: any;
   url: string;
   children: React.ReactNode;
+  onClick: () => void;
 }
 
-const BurgerLink: React.FC<BurgerLinkProps> = ({ icon, children, url }) => (
+const BurgerLink: React.FC<BurgerLinkProps> = ({
+  icon,
+  children,
+  onClick,
+  url,
+}) => (
   <motion.div
     className="flex gap-2 p-2"
-    whileHover={{ scale: 1.05  }}
+    whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
     transition={{ duration: 0.3 }}
   >
     <Link
       href={url}
+      onClick={onClick}
       className="flex items-center gap-2 p-4 mx-2 w-full rounded-xl text-gray-400 hover:bg-primary hover:text-white transition-colors duration-300"
     >
       <FontAwesomeIcon icon={icon} />
