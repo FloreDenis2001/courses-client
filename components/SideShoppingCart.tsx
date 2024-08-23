@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { StaticImageData } from "next/image";
 import Image from "next/image";
 import ButtonFull from "./ButtonFull";
+import Link from "next/link";
 
 interface Course {
   title: string;
@@ -90,9 +91,9 @@ const SideShoppingCart: React.FC<SideShoppingCartProps> = ({
             )}
           </div>
 
-          <div className="mt-4 grid place-content-center">
+          <Link href="/checkout" className="mt-4 grid place-content-center">
             <ButtonFull text="Finalizeaza" />
-          </div>
+          </Link>
         </motion.div>
       )}
     </AnimatePresence>

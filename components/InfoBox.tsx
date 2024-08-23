@@ -134,7 +134,7 @@ const InfoBox = () => {
         onClick={toggleDropdown}
       >
         {user.token ? (
-          <div className="border-primary border-[1px] w-8 h-8 rounded-full p-[1px] inline-block cursor-pointer overflow-hidden flex items-center justify-center">
+          <div className="border-primary border-[1px] w-8 h-8 rounded-full p-[1px] cursor-pointer overflow-hidden flex items-center justify-center">
             <Image
               src={profilePic}
               width={35}
