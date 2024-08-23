@@ -1,28 +1,58 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import ButtonFull from "@/components/ButtonFull";
 import trainer from "@/assets/loginbackground.jpg";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import UserService from "@/modules/user/services/UserService";
+import { LoginContext } from "@/modules/context/LoginProvider";
+import LoginContextType from "@/modules/context/LoginContextType";
+import LoginResponse from "@/modules/user/dto/LoginResponse";
 
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+  const { setUserCookie } = useContext(LoginContext) as LoginContextType;
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
-
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-  };
+    setLoading(true);
 
-  const handleForgotPassword = () => {
-    setShowForgotPassword(!showForgotPassword);
+    const formData = new FormData(e.target as HTMLFormElement);
+    const loginRequest = {
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+    };
+
+    try {
+      const userService = new UserService();
+      const loginResponse = await userService.login(loginRequest);
+      setUserCookie(loginResponse as LoginResponse);
+      toast.success("Login successful!", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+
+      setTimeout(() => {
+        router.push("/");
+      }, 1000);
+    } catch (err) {
+      toast.error("Login failed. Please check your email and password.", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -56,7 +86,7 @@ const LoginPage = () => {
                 }
               >
                 <div className="bg-white p-2 rounded-full">
-                  <svg className="w-4" viewBox="0 0 533.5 544.3">
+                <svg className="w-4" viewBox="0 0 533.5 544.3">
                     <path
                       d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z"
                       fill="#4285f4"
@@ -96,18 +126,18 @@ const LoginPage = () => {
                 className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary focus:bg-white"
                 type="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+                required
               />
               <input
                 className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-primary focus:bg-white mt-5"
                 type="password"
                 placeholder="Parolă"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                name="password"
+                required
               />
 
-              <ButtonFull text="Logare" />
+              <ButtonFull text={loading ? "Logging in..." : "Logare"} />
 
               <p className="mt-6 text-xs text-gray-600 text-center">
                 Sunt de acord cu
@@ -138,7 +168,13 @@ const LoginPage = () => {
               </div>
 
               <div className="mt-2 text-sm text-gray-600 text-center">
-                Nu aveți un cont? <Link href="/register" className="text-primary hover:underline ">Creați unul acum</Link>
+                Nu aveți un cont?{" "}
+                <Link
+                  href="/register"
+                  className="text-primary hover:underline "
+                >
+                  Creați unul acum
+                </Link>
               </div>
             </motion.form>
           </div>
@@ -157,6 +193,9 @@ const LoginPage = () => {
           />
         </motion.div>
       </motion.div>
+
+      {/* Toastify Container for Notifications */}
+      <ToastContainer />
     </motion.section>
   );
 };

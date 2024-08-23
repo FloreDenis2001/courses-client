@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import SearchBox from "./SearchBox";
 import Image from "next/image";
-import profilePic from "@/assets/trainer.jpg";
+import profilePic from "@/assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { LoginContext } from "@/modules/context/LoginProvider";
+import LoginContextType from "@/modules/context/LoginContextType";
 
 const InfoBox = () => {
-  const [isAuth, setIsAuth] = useState(true);
+  const { user, logOut } = useContext(LoginContext) as LoginContextType;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const containerVariants = {
@@ -35,11 +37,6 @@ const InfoBox = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleAuth = () => {
-    setIsAuth(!isAuth);
-    setIsDropdownOpen(false);
-  };
-
   useEffect(() => {
     if (isDropdownOpen) {
       const timer = setTimeout(() => {
@@ -49,6 +46,10 @@ const InfoBox = () => {
       return () => clearTimeout(timer);
     }
   }, [isDropdownOpen]);
+
+  const handleLogOut = () => {
+    logOut();
+  };
 
   return (
     <motion.section
@@ -87,7 +88,7 @@ const InfoBox = () => {
         transition={{ duration: 0.3 }}
         onClick={toggleDropdown}
       >
-        {isAuth ? (
+        {user.token ? (
           <div className="border-primary border-[1px] w-8 h-8 rounded-full p-[1px] inline-block cursor-pointer overflow-hidden flex items-center justify-center">
             <Image
               src={profilePic}
@@ -95,7 +96,6 @@ const InfoBox = () => {
               height={35}
               alt="Profile Picture"
               className="contain w-full h-full rounded-full"
-
             />
           </div>
         ) : (
@@ -114,21 +114,35 @@ const InfoBox = () => {
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="absolute right-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white shadow-lg rounded-lg p-2"
             >
-              {isAuth ? (
-                <>
-                  <p className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+              {user.token ? (
+                <div className="flex flex-col">
+                  {user.userRole === "ADMIN" && (
+                    <Link
+                      href="/dashboard"
+                      className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                    >
+                      Dashboard
+                    </Link>
+                  )}
+                  <Link
+                    href="/profile"
+                    className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                  >
                     Contul Meu
-                  </p>
-                  <p className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                  </Link>
+                  <Link
+                    href="/courses"
+                    className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                  >
                     Cursurile Mele
-                  </p>
+                  </Link>
                   <p
-                    onClick={handleAuth}
+                    onClick={() => handleLogOut()}
                     className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                   >
                     Logout
                   </p>
-                </>
+                </div>
               ) : (
                 <div className="flex flex-col">
                   <Link
