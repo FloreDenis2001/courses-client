@@ -10,10 +10,43 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { LoginContext } from "@/modules/context/LoginProvider";
 import LoginContextType from "@/modules/context/LoginContextType";
+import SideShoppingCart from "./SideShoppingCart";
+import freeImage from "@/assets/free.jpg";
+import meetImage from "@/assets/meet.jpg";
 
 const InfoBox = () => {
   const { user, logOut } = useContext(LoginContext) as LoginContextType;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const courses = [
+    {
+      title: "Curs Extensii Gene",
+      pret: 700,
+      image: freeImage,
+    },
+    {
+      title: "Curs Extensii Gene (Întâlnește Artistul)",
+      pret: 2100,
+      image: meetImage,
+    },
+    {
+      title: "Curs Extensii Gene",
+      pret: 700,
+      image: freeImage,
+    },
+    {
+      title: "Curs Extensii Gene (Întâlnește Artistul)",
+      pret: 2100,
+      image: meetImage,
+    },
+    {
+      title: "Curs Extensii Gene",
+      pret: 700,
+      image: freeImage,
+    },
+ 
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -37,6 +70,10 @@ const InfoBox = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
   useEffect(() => {
     if (isDropdownOpen) {
       const timer = setTimeout(() => {
@@ -50,6 +87,8 @@ const InfoBox = () => {
   const handleLogOut = () => {
     logOut();
   };
+
+  const cartItemCount = courses.length;
 
   return (
     <motion.section
@@ -68,16 +107,22 @@ const InfoBox = () => {
       </motion.div>
 
       <motion.div
-        className="flex items-center rounded-full cursor-pointer"
+        className="relative flex items-center rounded-full cursor-pointer"
         variants={itemVariants}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         transition={{ duration: 0.3 }}
+        onClick={toggleCart}
       >
         <FontAwesomeIcon
           icon={faCartShopping}
           className="text-primary w-5 h-5"
         />
+        {cartItemCount > 0 && (
+          <span className="absolute -top-2 -right-2 bg-secondary text-primary text-[8px] border border-primary font-extrabold rounded-full w-4 h-4 flex items-center justify-center">
+            {cartItemCount}
+          </span>
+        )}
       </motion.div>
 
       <motion.div
@@ -163,6 +208,11 @@ const InfoBox = () => {
           )}
         </AnimatePresence>
       </motion.div>
+      <SideShoppingCart
+        isCartOpen={isCartOpen}
+        toggleCart={toggleCart}
+        courses={courses}
+      />
     </motion.section>
   );
 };
