@@ -6,4 +6,5 @@ export default interface RegisterRequest{
     email : string;
     active : boolean;
     userRole : string;
+    profileUrl: string;
 }

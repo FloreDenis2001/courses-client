@@ -6,4 +6,5 @@ export default interface LoginResponse{
     email : string;
     active : boolean;
     userRole : string;
+    profileUrl: string;
 }

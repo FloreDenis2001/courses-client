@@ -20,6 +20,7 @@ const defaultUserState: LoginResponse = {
   phoneNumber: "",
   email: "",
   active: false,
+  profileUrl: "",
   userRole: "",
 };
 

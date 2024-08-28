@@ -45,7 +45,6 @@ const InfoBox = () => {
       pret: 700,
       image: freeImage,
     },
- 
   ];
 
   const containerVariants = {
@@ -135,13 +134,23 @@ const InfoBox = () => {
       >
         {user.token ? (
           <div className="border-primary border-[1px] w-8 h-8 rounded-full p-[1px] cursor-pointer overflow-hidden flex items-center justify-center">
-            <Image
-              src={profilePic}
-              width={35}
-              height={35}
-              alt="Profile Picture"
-              className="contain w-full h-full rounded-full"
-            />
+            {user.profileUrl?.length < 0 ? (
+              <Image
+                src={user.profileUrl}
+                width={35}
+                height={35}
+                alt="Profile Picture"
+                className="contain w-full h-full rounded-full"
+              />
+            ) : (
+              <Image
+                src={profilePic}
+                width={35}
+                height={35}
+                alt="Profile Picture"
+                className="contain w-full h-full rounded-full"
+              />
+            )}
           </div>
         ) : (
           <FontAwesomeIcon

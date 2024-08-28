@@ -3,6 +3,8 @@ import LoginResponse from "../dto/LoginResponse";
 import LoginRequest from "../dto/LoginRequest";
 import RegisterRequest from "../dto/RegisterRequest";
 import RegisterResponse from "../dto/RegisterResponse";
+import UpdateResponse from "../dto/UpdateResponse";
+import UpdateRequest from "../dto/UpdateRequest";
 
 class UserService extends ApiServer {
   login = async (user: LoginRequest): Promise<LoginResponse> => {
@@ -34,6 +36,40 @@ class UserService extends ApiServer {
       return Promise.reject([]);
     }
   }
+
+
+  updateProfile = async (user: UpdateRequest): Promise<UpdateResponse> => {
+    const data = await this.api<UpdateRequest, UpdateResponse>(
+      `/update`,
+      "PUT",
+      user,
+      ""
+    );
+    if (data.status === 200) {
+      const user = await data.json();
+      return user;
+    } else {
+      return Promise.reject([]);
+    }
+  }
+
+
+  updateProfilePhoto = async (formData: FormData , token:string ): Promise<any> => {
+   
+    const response = await this.api<FormData, any>(
+      `/updateProfilePicture`,
+      "POST",
+      formData,
+      token
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      return data; 
+    } else {
+      return Promise.reject("Failed to upload profile photo");
+    }
+  };
 }
 
 export default UserService;

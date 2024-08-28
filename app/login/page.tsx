@@ -36,6 +36,7 @@ const LoginPage: React.FC = () => {
     try {
       const userService = new UserService();
       const loginResponse = await userService.login(loginRequest);
+      console.log(loginResponse);
       setUserCookie(loginResponse as LoginResponse);
       toast.success("Login successful!", {
         position: "top-center",
