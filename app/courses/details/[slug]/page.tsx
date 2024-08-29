@@ -1,19 +1,24 @@
+// [slug].tsx
+import React from 'react';
+import { courses, getCourseByCode } from '@/modules/lessons/data';
 import { Metadata } from 'next';
-import { getCourseByCode, courses } from '@/modules/lessons/data';
-import CourseSection from '@/components/CourseSection';
+import CourseDetail from '@/components/CourseDetail';
 
-const CoursePage = async ({ params }: { params: { slug: string } }) => {
+interface DetailsCoursePageProps {
+  params: { slug: string };
+}
+
+const DetailsCoursePage: React.FC<DetailsCoursePageProps> = async ({ params }) => {
   const { slug } = params;
   const course = getCourseByCode(slug);
 
   if (!course) {
-
-    return <div className="flex items-center justify-center md:py-4 mt-20 mx-4"><div>Course not found</div></div>
+    return <div>Course not found</div>;
   }
 
   return (
     <section className="flex items-center justify-center md:py-4 mt-20 mx-4">
-      <CourseSection course={course} />
+      <CourseDetail course={course} />
     </section>
   );
 };
@@ -33,4 +38,4 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default CoursePage;
+export default DetailsCoursePage;

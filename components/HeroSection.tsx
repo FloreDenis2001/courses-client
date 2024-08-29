@@ -99,8 +99,8 @@ const HeroSection = () => {
               </div>
 
               <div className="flex flex-col gap-2 mt-4 md:mt-6 items-center lg:items-start">
-                <ButtonFull text="Cursuri" />
-                <ButtonBorder text="Descopera" />
+                <ButtonFull text="Cursuri" redirectTo="courses" />
+                <ButtonBorder text="Descopera" redirectTo="instructor" />
               </div>
             </div>
           </motion.div>

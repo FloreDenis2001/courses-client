@@ -112,8 +112,8 @@ const BelivesSection: React.FC = () => {
           ))}
         </div>
         <div className="flex flex-col lg:flex-row  gap-2 mt-2 md:mt-2 items-center lg:items-start p-2">
-          <ButtonFull text="Cursuri" />
-          <ButtonBorder text="Descopera" />
+          <ButtonFull text="Cursuri"  redirectTo="courses"/>
+          <ButtonBorder text="Contact" redirectTo="contact" />
         </div>
       </motion.div>
     </section>

@@ -1,10 +1,10 @@
+// CoursesSection.tsx
 "use client";
 import React from "react";
-import freeImage from "@/assets/free.jpg";
-import meetImage from "@/assets/meet.jpg";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import background from "@/assets/backgroundCourses.png";
+import { courses } from "@/modules/lessons/data";
 import CardCoursesSection from "./CardCoursesSection";
 
 const CoursesSection = () => {
@@ -13,19 +13,6 @@ const CoursesSection = () => {
     threshold: 0.3,
   });
 
-  const courses = [
-    {
-      title: "Curs Extensii Gene",
-      pret: 700,
-      image: freeImage,
-    },
-    {
-      title: "Curs Extensii Gene (Întâlnește Artistul)",
-      pret: 2100,
-      image: meetImage,
-    },
-  ];
-
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (index: number) => ({
@@ -33,7 +20,7 @@ const CoursesSection = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        delay: index * 0.3, 
+        delay: index * 0.3,
       },
     }),
   };
@@ -77,8 +64,7 @@ const CoursesSection = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           style={{ textShadow: "0 1px 3px rgba(0,0,0,0.1)" }}
         >
-          Am pregătit pentru tine două pachete educaționale marca Ana Buda
-          Beauty Artist
+          Am pregătit pentru tine două pachete educaționale marca Ana Buda Beauty Artist
         </motion.p>
         <motion.p
           className="text-lg mb-4 text-gray-600"
@@ -87,9 +73,7 @@ const CoursesSection = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           style={{ textShadow: "0 1px 3px rgba(0,0,0,0.1)" }}
         >
-          Cursul online îți oferă acces la comunitatea noastră exclusivă și te
-          învață tot ce trebuie să știi despre beauty prin intermediul
-          materialelor text și video de înaltă calitate.
+          Cursul online îți oferă acces la comunitatea noastră exclusivă și te învață tot ce trebuie să știi despre beauty prin intermediul materialelor text și video de înaltă calitate.
         </motion.p>
         <motion.p
           className="text-lg mb-4 text-gray-600"
@@ -98,9 +82,7 @@ const CoursesSection = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           style={{ textShadow: "0 1px 3px rgba(0,0,0,0.1)" }}
         >
-          Programul „Întâlnește Artistul” îți permite să înveți direct de la
-          echipa noastră de experți, prin sesiuni 1-1 (Live la studio sau pe
-          Zoom).
+          Programul „Întâlnește Artistul” îți permite să înveți direct de la echipa noastră de experți, prin sesiuni 1-1 (Live la studio sau pe Zoom).
         </motion.p>
 
         <motion.div
@@ -111,13 +93,12 @@ const CoursesSection = () => {
         >
           {courses.map((course, index) => (
             <motion.div
-              key={index}
+              key={course.code}
               variants={cardVariants}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
-              custom={index} 
-              className="transform transition-transform duration-500 hover:scale-105 hover:rotate-3d"
-              style={{ transformStyle: "preserve-3d" }}
+              custom={index}
+              className="transform transition-transform duration-500 hover:scale-105"
             >
               <CardCoursesSection course={course} />
             </motion.div>
