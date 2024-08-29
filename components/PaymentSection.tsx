@@ -28,7 +28,6 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ onMethodSelect }) => {
 
   return (
     <div className="bg-white p-6 rounded-lg border border-gray-200">
-      <h2 className="text-xl font-semibold mb-4">Select Payment Method</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div
           className={`flex items-center justify-center p-4 rounded-lg border cursor-pointer transition-all duration-300 

@@ -9,7 +9,6 @@ const DeliveryInformation: React.FC = () => {
 
   return (
     <div className="bg-white p-6 rounded-lg border border-gray-200">
-      <h2 className="text-2xl font-bold mb-4">Delivery Information</h2>
       <form className="grid grid-cols-1 gap-6">
         <input
           type="text"
