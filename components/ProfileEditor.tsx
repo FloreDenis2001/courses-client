@@ -3,7 +3,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ButtonFull from "@/components/ButtonFull";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import UserService from "@/modules/user/services/UserService";
 import { LoginContext } from "@/modules/context/LoginProvider";
@@ -21,37 +20,34 @@ const ProfileEditor: React.FC = () => {
     newPassword: "",
     confirmPassword: "",
   });
-  const { user, setUserCookie } = useContext(
-    LoginContext
-  ) as LoginContextType;
+  const { user, updateUser } = useContext(LoginContext) as LoginContextType;
   const router = useRouter();
 
-//   useEffect(() => {
-//     // Fetch user data when the component mounts
-//     const fetchUserData = async () => {
-//       try {
-//         const userService = new UserService();
-//         if (user) {
-//          const userData = await userService.getUserProfile(); // Assuming this fetches the profile dat
-//           setFormData({
-//             ...formData,
-//             firstName: userData.firstName,
-//             lastName: userData.lastName,
-//             phoneNumber: userData.phoneNumber,
-//             email: userData.email,
-//           });
-//         }
-//       } catch (err) {
-//         toast.error("Failed to fetch user data. Please try again.", {
-//           position: "top-center",
-//           autoClose: 3000,
-//         });
-//       }
-//     };
-
-//     fetchUserData();
-//   }, [userCookie]);
-
+  useEffect(() => {
+    const fetchUserData = () => {
+      try {
+        if (user) {
+          setFormData({
+            firstName: user.firstName || "",
+            lastName: user.lastName || "",
+            phoneNumber: user.phoneNumber || "",
+            email: user.email || "",
+            currentPassword: "",
+            newPassword: "",
+            confirmPassword: "",
+          });
+        }
+      } catch (err) {
+        toast.error("Failed to fetch user data. Please try again.", {
+          position: "top-center",
+          autoClose: 3000,
+        });
+      }
+    };
+  
+    fetchUserData();
+  }, [user]);
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -71,19 +67,26 @@ const ProfileEditor: React.FC = () => {
 
     try {
       const userService = new UserService();
-      await userService.updateProfile({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        phoneNumber: formData.phoneNumber,
-        email: formData.email,
-        currentPassword: formData.currentPassword,
-        newPassword: formData.newPassword,
-      });
+      const token = user?.token || ""; 
+
+      const updatedUserData = await userService.updateProfile(
+        {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          phoneNumber: formData.phoneNumber,
+          email: formData.email,
+          currentPassword: formData.currentPassword,
+          newPassword: formData.newPassword,
+        },
+        token
+      );
 
       toast.success("Profile updated successfully!", {
         position: "top-center",
         autoClose: 3000,
       });
+
+      updateUser(updatedUserData);
 
       router.push("/profile");
     } catch (err) {
@@ -100,13 +103,13 @@ const ProfileEditor: React.FC = () => {
 
   return (
     <motion.section
-      className="flex "
+      className="flex"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
       <motion.div
-        className="mb-4 text-start font-jakarta bg-secondary p-10 max-w-screen-lg w-full relative z-10 rounded-xl mx-auto shadow-md flex flex-col items-center mt-8 md:mt-6"
+        className="text-start font-jakarta bg-secondary max-w-screen-lg w-full relative z-10 rounded-xl mx-auto shadow-md flex flex-col items-center p-6 border border-gray-200"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -122,7 +125,7 @@ const ProfileEditor: React.FC = () => {
 
         <motion.form
           onSubmit={handleUpdateProfile}
-          className="mx-auto max-w-xs flex flex-col gap-3 items-center"
+          className="mx-auto max-w-xs flex flex-col gap-4 items-center mt-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -137,7 +140,7 @@ const ProfileEditor: React.FC = () => {
             required
           />
           <input
-            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary focus:bg-white mt-5"
+            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary focus:bg-white"
             type="text"
             placeholder="Last Name"
             name="lastName"
@@ -146,7 +149,7 @@ const ProfileEditor: React.FC = () => {
             required
           />
           <input
-            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary focus:bg-white mt-5"
+            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary focus:bg-white"
             type="text"
             placeholder="Phone Number"
             name="phoneNumber"
@@ -157,7 +160,7 @@ const ProfileEditor: React.FC = () => {
             required
           />
           <input
-            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary focus:bg-white mt-5"
+            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary focus:bg-white"
             type="email"
             placeholder="Email"
             name="email"
@@ -166,7 +169,7 @@ const ProfileEditor: React.FC = () => {
             required
           />
           <input
-            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-primary focus:bg-white mt-5"
+            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-primary focus:bg-white"
             type="password"
             placeholder="Current Password"
             name="currentPassword"
@@ -175,7 +178,7 @@ const ProfileEditor: React.FC = () => {
             required
           />
           <input
-            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-primary focus:bg-white mt-5"
+            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-primary focus:bg-white"
             type="password"
             placeholder="New Password"
             name="newPassword"
@@ -183,7 +186,7 @@ const ProfileEditor: React.FC = () => {
             onChange={handleChange}
           />
           <input
-            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-primary focus:bg-white mt-5"
+            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-400 text-sm focus:outline-none focus:border-primary focus:bg-white"
             type="password"
             placeholder="Confirm New Password"
             name="confirmPassword"

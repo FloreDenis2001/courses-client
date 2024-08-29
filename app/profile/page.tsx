@@ -93,7 +93,7 @@ const ProfilePage: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           ref={profileRef}
         >
-          {user.profileUrl.length < 0 ? (
+          {user.profileUrl.length > 0 ? (
 
 
             <Image

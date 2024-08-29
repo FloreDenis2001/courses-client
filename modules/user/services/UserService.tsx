@@ -38,12 +38,12 @@ class UserService extends ApiServer {
   }
 
 
-  updateProfile = async (user: UpdateRequest): Promise<UpdateResponse> => {
+  updateProfile = async (user: UpdateRequest,token:string): Promise<UpdateResponse> => {
     const data = await this.api<UpdateRequest, UpdateResponse>(
-      `/update`,
+      `/updateProfile`,
       "PUT",
       user,
-      ""
+      token
     );
     if (data.status === 200) {
       const user = await data.json();
@@ -64,7 +64,7 @@ class UserService extends ApiServer {
     );
 
     if (response.ok) {
-      const data = await response.json();
+      const data = await response.text();
       return data; 
     } else {
       return Promise.reject("Failed to upload profile photo");

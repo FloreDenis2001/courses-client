@@ -13,7 +13,7 @@ const navItems = [
   { id: "photography", label: "Fotografie", icon: <FaCamera /> },
   { id: "invoices", label: "Facturi", icon: <FaFileInvoice /> },
   { id: "payment-methods", label: "Metode de Plată", icon: <FaCreditCard /> },
-  { id: "notifications", label: "Notificări", icon: <FaBell /> },
+  // { id: "notifications", label: "Notificări", icon: <FaBell /> },
   { id: "close-account", label: "Închidere Cont", icon: <FaSignOutAlt /> },
 ];
 

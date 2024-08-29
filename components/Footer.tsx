@@ -27,7 +27,7 @@ export const Footer = () => {
   return (
     <motion.footer
       ref={ref}
-      className="flex items-center justify-center md:py-4 mx-4"
+      className="flex items-center justify-center md:py-4 mx-4 mt-4"
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={footerVariants}

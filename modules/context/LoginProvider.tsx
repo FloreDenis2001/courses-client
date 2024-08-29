@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import LoginContextType from "./LoginContextType";
 import LoginResponse from "../user/dto/LoginResponse";
 import { useRouter } from "next/navigation";
+import UpdateResponse from "../user/dto/UpdateResponse";
 
 type LoginProviderProps = {
   children?: React.ReactNode;
@@ -57,14 +58,39 @@ const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
     }, 1000);
   }, []);
 
+  // CHANGE IMAGE URL 
+
+  const changeImage = useCallback((url: string): void => {
+    setUser({
+      ...user,
+      profileUrl: url,
+    });
+  }, [user]);
+
+
+  const updateUser = useCallback((newUser: UpdateResponse): void => {
+    setUser({
+      ...user,
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      phoneNumber: newUser.phoneNumber,
+      email: newUser.email,
+      active: newUser.active,
+      userRole: newUser.userRole,
+      profileUrl: newUser.profileUrl,
+    });
+  }, []);
+
   // Memoize the context value to prevent unnecessary re-renders
   const contextValue = useMemo(
     () => ({
       user,
       setUserCookie,
+      changeImage,
+      updateUser,
       logOut,
     }),
-    [user, setUserCookie, logOut]
+    [user, setUserCookie,changeImage, logOut]
   );
 
   return (

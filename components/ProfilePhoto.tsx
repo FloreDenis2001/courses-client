@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import userProfile from "@/assets/logo.png"; 
+import userProfile from "@/assets/logo.png";
 import UserService from "@/modules/user/services/UserService";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,7 +20,7 @@ const ProfilePhoto: React.FC = () => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const { user } = useContext(LoginContext) as LoginContextType;
+  const { user , changeImage } = useContext(LoginContext) as LoginContextType;
 
   useEffect(() => {
     if (selectedFile) {
@@ -49,12 +49,11 @@ const ProfilePhoto: React.FC = () => {
       formData.append("file", selectedFile);
 
       const userService = new UserService();
-      console.log(user.token);
       const response = await userService.updateProfilePhoto(
         formData,
         user.token
       );
-      user.profileUrl = response.profileUrl;
+      changeImage(response);
       toast.success("Profile photo updated successfully!", {
         position: "top-center",
         autoClose: 3000,
@@ -82,23 +81,13 @@ const ProfilePhoto: React.FC = () => {
         Actualizează-ți fotografia de profil
       </h2>
       <div className="relative w-40 h-40 mb-4">
-        {user.profileUrl.length < 0 ? (
-          <Image
-            src={user.profileUrl}
-            className="rounded-full w-40 h-40 fit-cover  border-2 border-primary"
-            width={40}
-            height={40}
-            alt="Profile Picture"
-          />
-        ) : (
-          <Image
-            src={userProfile}
-            className="rounded-full w-40 h-40 fit-cover  border-2 border-primary"
-            width={40}
-            height={40}
-            alt="Profile Picture"
-          />
-        )}
+        <Image
+          src={previewUrl || user.profileUrl || userProfile}
+          className="rounded-full w-40 h-40 fit-cover border-2 border-primary"
+          width={160}
+          height={160}
+          alt="Profile Picture"
+        />
         <input
           type="file"
           accept="image/*"
