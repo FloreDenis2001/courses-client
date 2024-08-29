@@ -8,7 +8,8 @@ const CoursePage = async ({ params }: { params: { slug: string } }) => {
   const course = getCourseByCode(slug);
 
   if (!course) {
-    return <div>Course not found</div>;
+
+    return <div className="flex items-center justify-center md:py-4 mt-20 mx-4"><div>Course not found</div></div>
   }
 
   return (
@@ -18,7 +19,7 @@ const CoursePage = async ({ params }: { params: { slug: string } }) => {
   );
 };
 
-// Generare de rute statice (pentru generarea paginilor la build-time)
+// Generare de rute statice (pentru generarea paginilor la build-time)s
 export async function generateStaticParams() {
   return courses.map(course => ({
     slug: course.code
