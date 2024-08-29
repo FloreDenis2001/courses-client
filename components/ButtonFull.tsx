@@ -16,7 +16,7 @@ const ButtonFull: React.FC<ButtonProps> = ({ text, redirectTo , onClick }) => {
     if (onClick) {
       onClick(); 
     }
-
+    
     if (redirectTo) {
       router.push(redirectTo); 
     }
