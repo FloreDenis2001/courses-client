@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import ButtonBorder from "./ButtonBorder";
@@ -9,6 +9,39 @@ const SubscribeSection = () => {
     triggerOnce: true,
     threshold: 0.3,
   });
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmissionStatus(null);
+
+    try {
+      const response = await fetch("https://tavyana.activehosted.com/proc.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          EMAIL: email,
+   
+        }),
+      });
+
+      if (response.ok) {
+        setSubmissionStatus("Abonare reușită! Verifică-ți emailul pentru confirmare.");
+        setEmail("");
+      } else {
+        setSubmissionStatus("Ceva nu a mers bine. Te rugăm să încerci din nou.");
+      }
+    } catch (error) {
+      setSubmissionStatus("Eroare la trimiterea formularului. Te rugăm să încerci din nou.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section
@@ -50,6 +83,7 @@ const SubscribeSection = () => {
 
           <motion.form
             className="flex flex-col w-full max-w-md items-center"
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
             transition={{ duration: 0.6, delay: 0.6 }}
@@ -57,15 +91,24 @@ const SubscribeSection = () => {
             <motion.input
               type="email"
               placeholder="Adresa ta de email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full max-w-xs p-3 mb-4 text-black rounded-lg outline-none border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : -20 }}
               transition={{ duration: 0.6, delay: 0.8 }}
+              required
             />
             <div className="relative flex justify-center items-center gap-2">
-              <ButtonBorder text="Abonează-te" />
+              <ButtonBorder text={isSubmitting ? "Abonare în curs..." : "Abonează-te"} />
             </div>
           </motion.form>
+
+          {submissionStatus && (
+            <p className={`mt-4 ${submissionStatus.includes("reușită") ? "text-green-500" : "text-red-500"}`}>
+              {submissionStatus}
+            </p>
+          )}
         </div>
       </motion.div>
     </section>

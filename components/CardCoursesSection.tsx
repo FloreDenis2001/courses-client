@@ -1,18 +1,22 @@
 // CardCoursesSection.tsx
 "use client";
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Course } from "@/modules/lessons/data";
 import ButtonFull from "./ButtonFull";
 import ButtonBorder from "./ButtonBorder";
-
+import { useRouter } from "next/navigation";
 interface CourseCardProps {
   course: Course;
 }
 
 const CardCoursesSection: React.FC<CourseCardProps> = ({ course }) => {
-  console.log(course);
+  const router = useRouter();
+
+  const handleDoubleClick = () => {
+    router.push(`/courses/shop/${course.code}`);
+  };
   return (
     <motion.div
       className="relative bg-white rounded-lg shadow-lg overflow-hidden flex flex-col max-w-[320px] h-[450px]"
@@ -20,6 +24,7 @@ const CardCoursesSection: React.FC<CourseCardProps> = ({ course }) => {
       animate={{ opacity: 1 }}
       whileHover={{ boxShadow: "0 12px 24px rgba(0, 0, 0, 0.15)" }}
       transition={{ duration: 0.3 }}
+      onDoubleClick={handleDoubleClick}
     >
       <div className="relative flex-shrink-0 h-48">
         <Image
