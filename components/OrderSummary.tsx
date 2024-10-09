@@ -14,8 +14,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ courses }) => {
     (total, course) => total + course.price * 1,
     0
   );
- 
-  
+
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
@@ -23,9 +22,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ courses }) => {
   return (
     <div className="mt-4 p-4 bg-white rounded-lg border border-gray-200">
       <div className="flex flex-col gap-3">
-        {courses.map((course,index) => (
-    
-
+        {courses.map((course, index) => (
           <motion.div
             key={index}
             variants={itemVariants}
