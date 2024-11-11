@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 
 const NavBar = () => {
   const links = [
-    { text: "Acasa", url: "/" },
-    { text: "Instructor", url: "/instructor" },
-    { text: "Cursuri", url: "/courses" },
-    { text: "Contact", url: "/contact" },
+    { text: "Acasa", url: "/ui/" },
+    { text: "Instructor", url: "instructor" },
+    { text: "Cursuri", url: "courses" },
+    { text: "Contact", url: "contact" },
   ];
 
   const containerVariants = {
