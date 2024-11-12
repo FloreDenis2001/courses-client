@@ -2,10 +2,11 @@
 import React from "react";
 import NavLink from "./NavLink";
 import { motion } from "framer-motion";
+import { determinePath } from "@/modules/utils/utils";
 
 const NavBar = () => {
   const links = [
-    { text: "Acasa", url: "/ui/" },
+    { text: "Acasa", url: "" },
     { text: "Instructor", url: "instructor" },
     { text: "Cursuri", url: "courses" },
     { text: "Contact", url: "contact" },
@@ -36,7 +37,7 @@ const NavBar = () => {
         variants={containerVariants}
       >
         {links.map((link, index) => (
-          <NavLink key={index} link={link} />
+          <NavLink key={index} link={{ ...link, url: determinePath(link.url) }}  />
         ))}
       </motion.ul>
     </motion.section>

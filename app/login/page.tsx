@@ -15,10 +15,12 @@ import LoginContextType from "@/modules/context/LoginContextType";
 import LoginResponse from "@/modules/user/dto/LoginResponse";
 
 const LoginPage: React.FC = () => {
+
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+  
   const { setUserCookie } = useContext(LoginContext) as LoginContextType;
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -195,7 +197,6 @@ const LoginPage: React.FC = () => {
         </motion.div>
       </motion.div>
 
-      {/* Toastify Container for Notifications */}
       <ToastContainer />
     </motion.section>
   );

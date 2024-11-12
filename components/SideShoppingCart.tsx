@@ -6,6 +6,7 @@ import { StaticImageData } from "next/image";
 import Image from "next/image";
 import ButtonFull from "./ButtonFull";
 import Link from "next/link";
+import { determinePath } from "@/modules/utils/utils";
 
 interface Course {
   title: string;
@@ -24,7 +25,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, 
+      staggerChildren: 0.2,
       duration: 0.5,
     },
   },
@@ -60,7 +61,10 @@ const SideShoppingCart: React.FC<SideShoppingCartProps> = ({
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ maxHeight: 'calc(100vh - 150px)' }}>
+          <div
+            className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+            style={{ maxHeight: "calc(100vh - 150px)" }}
+          >
             {courses.length === 0 ? (
               <p className="text-center text-gray-600">Your cart is empty.</p>
             ) : (
@@ -82,7 +86,9 @@ const SideShoppingCart: React.FC<SideShoppingCartProps> = ({
                       className="w-20 h-20 object-cover rounded-lg shadow-sm"
                     />
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-gray-800">{course.title}</h3>
+                      <h3 className="text-lg font-semibold text-gray-800">
+                        {course.title}
+                      </h3>
                       <p className="text-sm text-primary">{course.pret} RON</p>
                     </div>
                   </motion.li>
@@ -91,7 +97,11 @@ const SideShoppingCart: React.FC<SideShoppingCartProps> = ({
             )}
           </div>
 
-          <Link href="/checkout" className="mt-4 grid place-content-center">
+          <Link
+            href={determinePath("checkout")}
+            className="mt-4 grid place-content-center"
+            onClick={toggleCart}
+          >
             <ButtonFull text="Finalizeaza" />
           </Link>
         </motion.div>
