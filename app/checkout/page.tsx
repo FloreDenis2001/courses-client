@@ -8,6 +8,7 @@ import OrderSummary from "@/components/OrderSummary";
 import ButtonFull from "@/components/ButtonFull";
 import background from "@/assets/background.jpg";
 import { Course, courses } from "@/modules/lessons/data";
+import PaymentService from "@/modules/payment/services/PaymentService";
 
 const CheckoutPage = () => {
   const { ref, inView } = useInView({
@@ -16,12 +17,65 @@ const CheckoutPage = () => {
   });
 
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
+  const [deliveryInfo, setDeliveryInfo] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    city: "",
+    country: "",
+    address: "",
+  });
 
   const selectedCourses: Course[] = courses;
-
+  const paymentService = new PaymentService();
   const handlePaymentMethodSelect = (method: string) => {
     setPaymentMethod(method);
   };
+
+  const handleDeliveryInfoChange = (info: typeof deliveryInfo) => {
+    setDeliveryInfo(info);
+  };
+
+  const handleFinalizePayment = async () => {
+    setIsProcessing(true);
+    try {
+      const paymentRequest = {
+        paymentInfoData: {
+          name: deliveryInfo.name,
+          phone: deliveryInfo.phone,
+          email: deliveryInfo.email,
+          city: deliveryInfo.city,
+          country: deliveryInfo.country,
+          address: deliveryInfo.address,
+        },
+        paymentDetailsDTO: selectedCourses.map((course) => ({
+          name: course.name,
+          price: course.price,
+          currency: "usd",
+          quantity: 1,
+        })),
+      };
+  
+      const response = await paymentService.createCheckoutSession(paymentRequest);
+  
+      console.log("Payment response:", response);
+  
+      if (response.url) {
+        window.location.href = response.url;
+      } else {
+        throw new Error("Failed to retrieve Stripe Checkout URL");
+      }
+    } catch (error) {
+      console.error("Payment failed:", error);
+      alert("Payment failed. Please try again.");
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+  
+  
+  
 
   return (
     <section
@@ -68,8 +122,8 @@ const CheckoutPage = () => {
 
               <div className="mt-8 self-center">
                 <ButtonFull
-                  text="Finalizeaza"
-                  redirectTo="/order-confirmation"
+                  text={isProcessing ? "Processing..." : "Finalizeaza"}
+                  onClick={handleFinalizePayment}
                 />
               </div>
             </div>
