@@ -98,7 +98,7 @@ const SideShoppingCart: React.FC<SideShoppingCartProps> = ({
           </div>
 
           <Link
-            href={determinePath("checkout")}
+            href={determinePath("/checkout")}
             className="mt-4 grid place-content-center"
             onClick={toggleCart}
           >

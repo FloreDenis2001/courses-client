@@ -41,10 +41,10 @@ const CardCoursesSection: React.FC<CourseCardProps> = ({ course }) => {
         <h3 className="text-2xl font-bold mb-2 text-gray-800">{course.name}</h3>
         <p className="text-2xl text-primary mb-4 font-semibold">{+course.price} RON</p>
         <div className="flex justify-center gap-2">
-          <ButtonFull text="Cumpără" redirectTo={determinePath(`courses/shop/${course.code}`)} />
+          <ButtonFull text="Cumpără" redirectTo={determinePath(`/courses/shop/${course.code}`)} />
           <ButtonBorder
             text="Detalii"
-            redirectTo={determinePath(`courses/details/${course.code}`)}
+            redirectTo={determinePath(`/courses/details/${course.code}`)}
           />
         </div>
       </div>

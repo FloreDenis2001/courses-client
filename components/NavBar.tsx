@@ -6,10 +6,10 @@ import { determinePath } from "@/modules/utils/utils";
 
 const NavBar = () => {
   const links = [
-    { text: "Acasa", url: "" },
-    { text: "Instructor", url: "instructor" },
-    { text: "Cursuri", url: "courses" },
-    { text: "Contact", url: "contact" },
+    { text: "Acasa", url: "/" },
+    { text: "Instructor", url: "/instructor" },
+    { text: "Cursuri", url: "/courses" },
+    { text: "Contact", url: "/contact" },
   ];
 
   const containerVariants = {

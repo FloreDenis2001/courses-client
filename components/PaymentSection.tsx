@@ -2,12 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMoneyBillWave,
-  faCreditCard,
-  faMobileAlt,
-} from "@fortawesome/free-solid-svg-icons";
 import { FaPaypal } from "react-icons/fa";
+import { FaStripe } from "react-icons/fa6";
 
 interface PaymentSectionProps {
   onMethodSelect: (method: string) => void;
@@ -28,19 +24,8 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ onMethodSelect }) => {
 
   return (
     <div className="bg-white p-6 rounded-lg border border-gray-200">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div
-          className={`flex items-center justify-center p-4 rounded-lg border cursor-pointer transition-all duration-300 
-          ${
-            selectedMethod === "cod"
-              ? "border-primary bg-primary text-white"
-              : "border-gray-300 bg-white text-gray-600"
-          }`}
-          onClick={() => handleChange("cod")}
-        >
-          <FontAwesomeIcon icon={faMoneyBillWave} className="text-2xl mr-3" />
-          <span className="text-sm font-medium">Cash</span>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
         <div
           className={`flex items-center justify-center p-4 rounded-lg border cursor-pointer transition-all duration-300 
           ${
@@ -50,8 +35,8 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ onMethodSelect }) => {
           }`}
           onClick={() => handleChange("online")}
         >
-          <FontAwesomeIcon icon={faCreditCard} className="text-2xl mr-3" />
-          <span className="text-sm font-medium">Online Payment</span>
+          <FaStripe className="text-4xl mr-3" />
+          <span className="text-md font-medium">Stripe</span>
         </div>
 
         <div
@@ -63,8 +48,8 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ onMethodSelect }) => {
           }`}
           onClick={() => handleChange("pos")}
         >
-          <FaPaypal className="text-2xl mr-3" />
-          <span className="text-sm font-medium">Paypal</span>
+          <FaPaypal className="text-4xl mr-3" />
+          <span className="text-md font-medium">Paypal</span>
         </div>
       </div>
     </div>

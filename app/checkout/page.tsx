@@ -40,7 +40,7 @@ const CheckoutPage = () => {
         }}
       >
         <div className="relative z-10 col-span-1 p-6 rounded-lg shadow-lg border border-gray-200 bg-white">
-          <h2 className="text-xl font-semibold mb-4">Delivery Information</h2>
+          <h2 className="text-xl font-semibold mb-4">Personal Information</h2>
           <DeliveryInformation />
           <div className="mt-8">
             <h2 className="text-xl font-semibold mb-4">Payment Method</h2>

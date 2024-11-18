@@ -3,6 +3,7 @@
 import React, { useContext } from "react";
 import { LoginContext } from "@/modules/context/LoginProvider";
 import LoginContextType from "@/modules/context/LoginContextType";
+import { europeanCountries } from "@/modules/utils/utils";
 
 const DeliveryInformation: React.FC = () => {
   const { user } = useContext(LoginContext) as LoginContextType;
@@ -41,9 +42,11 @@ const DeliveryInformation: React.FC = () => {
           />
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <select className="p-3 border rounded w-full">
-            <option value="">State</option>
-            <option value="California">California</option>
+        <select className="p-3 border rounded w-full">
+            <option value="">Select Country</option>
+            {europeanCountries.map((country, index) => (
+              <option key={index} value={country}>{country}</option>
+            ))}
           </select>
           <input
             type="text"

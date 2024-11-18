@@ -173,20 +173,20 @@ const InfoBox = () => {
                 <div className="flex flex-col">
                   {user.userRole === "ADMIN" && (
                     <Link
-                      href={determinePath("dashboard")}
+                      href={determinePath("/dashboard")}
                       className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                     >
                       Dashboard
                     </Link>
                   )}
                   <Link
-                    href={determinePath("profile")}
+                    href={determinePath("/profile")}
                     className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                   >
                     Contul Meu
                   </Link>
                   <Link
-                    href={determinePath("courses")}
+                    href={determinePath("/courses")}
                     className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                   >
                     Cursurile Mele
@@ -201,13 +201,13 @@ const InfoBox = () => {
               ) : (
                 <div className="flex flex-col">
                   <Link
-                    href={determinePath("login")}
+                    href={determinePath("/login")}
                     className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                   >
                     Autentificare
                   </Link>
                   <Link
-                    href={determinePath("register")}
+                    href={determinePath("/register")}
                     className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                   >
                     Înregistrare

@@ -22,7 +22,7 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
       transition={{ duration: 0.4 }}
     >
       <div className="flex items-center mb-6">
-        <Link href={determinePath("courses")} className="hover:text-primary text-gray-600 flex items-center transition-colors">
+        <Link href={determinePath("/courses")} className="hover:text-primary text-gray-600 flex items-center transition-colors">
           <FaArrowLeft className="mr-2" /> Înapoi la Cursuri
         </Link>
       </div>
